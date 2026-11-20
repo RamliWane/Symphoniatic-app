@@ -1,6 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
-import type { Href } from 'expo-router';
-import { TabTrigger, type TabTriggerSlotProps } from 'expo-router/ui';
+import type { TabTriggerSlotProps } from 'expo-router/ui';
 import { Pressable, Text, View } from 'react-native';
 
 import { colors } from '@/constants/colors';
@@ -13,11 +12,9 @@ export interface BottomNavigationItemData {
   icon: IoniconsName;
 }
 
-type BottomNavigationItemProps = BottomNavigationItemData & TabTriggerSlotProps;
+type BottomNavigationItemProps = BottomNavigationItemData & Omit<TabTriggerSlotProps, 'ref'>;
 
 export function BottomNavigationItem({
-  name,
-  href,
   label,
   icon,
   isFocused,
@@ -26,11 +23,12 @@ export function BottomNavigationItem({
   const isActive = Boolean(isFocused);
 
   return (
-    <TabTrigger name={name} href={href as Href} asChild {...props}>
-      <Pressable
-        accessibilityRole="tab"
-        accessibilityState={{ selected: isActive }}
-        className="flex-1 items-center justify-center pb-2 pt-2.5 active:opacity-70">
+    <Pressable
+      {...props}
+      accessibilityRole="tab"
+      accessibilityState={{ selected: isActive }}
+      className="flex-1 active:opacity-70">
+      <View className="w-full items-center pb-2 pt-2.5">
         <Ionicons name={icon} size={24} color={isActive ? colors.navy : colors.muted} />
         <Text
           numberOfLines={1}
@@ -44,7 +42,7 @@ export function BottomNavigationItem({
             isActive ? 'bg-coral' : 'bg-transparent'
           }`}
         />
-      </Pressable>
-    </TabTrigger>
+      </View>
+    </Pressable>
   );
 }

@@ -1,4 +1,5 @@
-import { Tabs, TabList, TabSlot } from 'expo-router/ui';
+import type { Href } from 'expo-router';
+import { TabList, TabSlot, TabTrigger, Tabs } from 'expo-router/ui';
 import { View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -25,7 +26,9 @@ export function BottomNavigation() {
           className="flex-row border-t border-line bg-white px-2"
           style={{ paddingBottom: insets.bottom }}>
           {TAB_ITEMS.map((item) => (
-            <BottomNavigationItem key={item.name} {...item} />
+            <TabTrigger key={item.name} name={item.name} href={item.href as Href} asChild>
+              <BottomNavigationItem {...item} />
+            </TabTrigger>
           ))}
         </View>
       </TabList>
