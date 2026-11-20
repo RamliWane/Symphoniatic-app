@@ -4,7 +4,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors } from '@/constants/colors';
 
-type PlaceholderRoute = '/tickets' | '/education' | '/profile';
+type PlaceholderRoute = '/tickets' | '/profile';
 
 interface PlaceholderScreenProps {
   route: PlaceholderRoute;
@@ -44,17 +44,6 @@ export function TicketsScreen() {
       title="Tiket Saya"
       description="Tiket konser yang kamu beli akan muncul di sini."
       icon="ticket-outline"
-    />
-  );
-}
-
-export function EducationScreen() {
-  return (
-    <PlaceholderScreen
-      route="/education"
-      title="Edukasi"
-      description="Panduan etika dan persiapan sebelum menonton konser."
-      icon="book-outline"
     />
   );
 }

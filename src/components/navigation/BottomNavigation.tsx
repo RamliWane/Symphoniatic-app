@@ -10,7 +10,7 @@ import {
 const TAB_ITEMS: BottomNavigationItemData[] = [
   { name: 'home', href: '/', label: 'Beranda', icon: 'home-outline' },
   { name: 'tickets', href: '/tickets', label: 'Tiket Saya', icon: 'ticket-outline' },
-  { name: 'education', href: '/education', label: 'Edukasi', icon: 'book-outline' },
+  { name: 'education', href: '/education', label: 'Edukasi', icon: 'school-outline' },
   { name: 'profile', href: '/profile', label: 'Profil', icon: 'person-outline' },
 ];
 

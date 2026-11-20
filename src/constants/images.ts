@@ -11,3 +11,5 @@ import type { ImageSourcePropType } from 'react-native';
 export const HERO_IMAGE: ImageSourcePropType | null = null;
 export const EDUCATION_BANNER_IMAGE: ImageSourcePropType | null = null;
 export const CONCERT_DETAIL_HERO_IMAGE: ImageSourcePropType | null = null;
+export const EDUCATION_HERO_IMAGE: ImageSourcePropType | null = null;
+export const EDUCATION_FEATURED_IMAGE: ImageSourcePropType | null = null;
