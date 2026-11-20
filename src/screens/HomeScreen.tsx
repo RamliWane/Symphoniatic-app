@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import { ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -12,6 +13,7 @@ import { TrendingConcerts } from '@/components/home/TrendingConcerts';
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const router = useRouter();
 
   return (
     <View className="flex-1 bg-white">
@@ -30,7 +32,11 @@ export default function HomeScreen() {
         <EducationBanner />
 
         <SectionHeading label="SEDANG RAMAI" title="Yang Lagi Ramai" actionLabel="Lihat Semua" />
-        <TrendingConcerts />
+        <TrendingConcerts
+          onPressConcert={(concert) =>
+            router.push({ pathname: '/concert/[id]', params: { id: concert.id } })
+          }
+        />
 
         <GenreSection />
 

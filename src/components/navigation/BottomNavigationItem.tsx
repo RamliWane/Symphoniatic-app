@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import type { Href } from 'expo-router';
 import { TabTrigger, type TabTriggerSlotProps } from 'expo-router/ui';
 import { Pressable, Text, View } from 'react-native';
 
@@ -25,7 +26,7 @@ export function BottomNavigationItem({
   const isActive = Boolean(isFocused);
 
   return (
-    <TabTrigger name={name} href={href} asChild {...props}>
+    <TabTrigger name={name} href={href as Href} asChild {...props}>
       <Pressable
         accessibilityRole="tab"
         accessibilityState={{ selected: isActive }}

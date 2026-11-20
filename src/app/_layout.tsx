@@ -1,15 +1,20 @@
-import { ThemeProvider, DefaultTheme } from 'expo-router';
+import { DefaultTheme, Stack, ThemeProvider } from 'expo-router';
 
 import '@/global.css';
 
 import { AnimatedSplashOverlay } from '@/components/animated-icon';
-import { BottomNavigation } from '@/components/navigation/BottomNavigation';
+import { colors } from '@/constants/colors';
 
 export default function RootLayout() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <AnimatedSplashOverlay />
-      <BottomNavigation />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: { backgroundColor: colors.white },
+        }}
+      />
     </ThemeProvider>
   );
 }
