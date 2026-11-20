@@ -20,10 +20,10 @@ export function BottomNavigation() {
   return (
     <Tabs>
       <TabSlot />
-      <TabList
-        asChild
-        style={{ borderTopColor: '#E2E8F0', borderTopWidth: 1, backgroundColor: '#FFFFFF' }}>
-        <View style={{ paddingBottom: insets.bottom }} className="flex-row bg-white">
+      <TabList asChild>
+        <View
+          className="flex-row border-t border-line bg-white px-2"
+          style={{ paddingBottom: insets.bottom }}>
           {TAB_ITEMS.map((item) => (
             <BottomNavigationItem key={item.name} {...item} />
           ))}

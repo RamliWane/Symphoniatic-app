@@ -1,6 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import { TabTrigger, type TabTriggerSlotProps } from 'expo-router/ui';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 
 import { colors } from '@/constants/colors';
 import type { IoniconsName } from '@/types/genre';
@@ -23,23 +23,27 @@ export function BottomNavigationItem({
   ...props
 }: BottomNavigationItemProps) {
   const isActive = Boolean(isFocused);
-  const tint = isActive ? colors.navy : colors.muted;
 
   return (
     <TabTrigger name={name} href={href} asChild {...props}>
-      <View
+      <Pressable
         accessibilityRole="tab"
         accessibilityState={{ selected: isActive }}
-        className="flex-1 items-center gap-0.5 pb-2 pt-2.5 active:opacity-70">
-        <Ionicons name={icon} size={21} color={tint} />
-        <Text className="text-[10px] font-semibold" style={{ color: tint }}>
+        className="flex-1 items-center justify-center pb-2 pt-2.5 active:opacity-70">
+        <Ionicons name={icon} size={24} color={isActive ? colors.navy : colors.muted} />
+        <Text
+          numberOfLines={1}
+          className={`mt-1.5 text-[12px] leading-4 ${
+            isActive ? 'font-medium text-navy' : 'font-normal text-muted'
+          }`}>
           {label}
         </Text>
         <View
-          className="mt-0.5 h-[3px] w-7 rounded-full"
-          style={{ backgroundColor: isActive ? colors.coral : 'transparent' }}
+          className={`mt-2 h-[3px] w-[52px] rounded-full ${
+            isActive ? 'bg-coral' : 'bg-transparent'
+          }`}
         />
-      </View>
+      </Pressable>
     </TabTrigger>
   );
 }
