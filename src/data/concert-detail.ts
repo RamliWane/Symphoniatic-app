@@ -1,10 +1,17 @@
-import { trendingConcerts } from '@/data/concerts';
+import { allConcerts } from '@/data/concerts';
 import type {
   Concert,
+  ConcertCategory,
   ConcertDetail,
   ConcertFaqItem,
   ConcertHighlight,
 } from '@/types/concert';
+
+const CATEGORY_LABELS: Record<ConcertCategory, string> = {
+  konser: 'Konser Musik',
+  festival: 'Festival Musik',
+  pertunjukan: 'Pertunjukan',
+};
 
 /**
  * Mock detail content for visual development only.
@@ -71,18 +78,18 @@ export function getConcertDetail(id: string | undefined): ConcertDetail | null {
     return detail;
   }
 
-  const concert = trendingConcerts.find((item) => item.id === id);
+  const concert = allConcerts.find((item) => item.id === id);
   return concert ? createFallbackDetail(concert) : null;
 }
 
 function createFallbackDetail(concert: Concert): ConcertDetail {
   return {
     ...concert,
-    time: '19.00 WIB',
-    venue: { name: concert.venue, city: 'Jakarta' },
+    time: concert.time ?? '19.00 WIB',
+    venue: { name: concert.venue, city: concert.city ?? 'Jakarta' },
     description: `Saksikan penampilan ${concert.artist} dalam tur ${concert.tourName} di Jakarta!`,
     longDescription: `${concert.artist} kembali hadir di Jakarta dalam rangkaian tur ${concert.tourName}. Nikmati penampilan terbaik dan suasana konser yang tak terlupakan bersama para penggemar.`,
-    category: 'Pop',
+    category: concert.category ? CATEGORY_LABELS[concert.category] : 'Musik',
     highlights: DEFAULT_HIGHLIGHTS,
     faq: DEFAULT_FAQ,
   };
